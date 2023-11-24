@@ -4,7 +4,7 @@ import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import taskRouter from "./Routes/task.js";
 import { errorMiddleWare } from "./middlewares/error.js";
-import cors from 'cors'
+import cors from "cors";
 const app = express();
 
 //configuration
@@ -25,11 +25,14 @@ app.use(
 );
 
 //routes
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: `welcome to web service api`,
+  });
+});
 app.use("/user", userRoute);
 app.use("/task", taskRouter);
-
-
-
 
 // @error middleware
 app.use(errorMiddleWare);
